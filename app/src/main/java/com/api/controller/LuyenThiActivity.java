@@ -18,6 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -39,7 +40,7 @@ public class LuyenThiActivity extends AppCompatActivity{
 
     Bundle bundle;
     private ProgressBar pbLoad;
-    private ImageButton imbNopBai, imbBackLT;
+    private ImageButton imbBackLT;
     private TextView tvMonThi, tvIdCH, tvCauHoi, tvKetQua, tvDiem;
     private AppCompatButton btnNopBai, btnHuy, btnThiLai, btnKetQua, btnY, btnN, btnA, btnB, btnC, btnD, btnNextCH;
 
@@ -183,15 +184,6 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnD.setText(cauHoiDtoList.get(viTri).getD());
     }
 
-    private void hienThiKQ(List<CauHoiDto> cauHoiDtoList) {
-        new AlertDialog.Builder(this)
-                .setTitle("Chúc mừng bạn hoàn thành bài thi!")
-                .setMessage("ĐIỂM THI CỦA BẠN LÀ: "+diem+" đạt "+diem+"/"+tongCH+" câu hỏi.")
-                .setPositiveButton("Restart",((dialogInterface, i) -> thiLai(cauHoiDtoList)))
-                .setCancelable(false)
-                .show();
-    }
-
     private void thiLai(List<CauHoiDto> cauHoiDtoList) {
         diem = 0;
         viTri = 0;
@@ -201,7 +193,6 @@ public class LuyenThiActivity extends AppCompatActivity{
     private void getControl() {
         pbLoad = findViewById(R.id.pbLoad);
         tvMonThi = findViewById(R.id.tvMonThi);
-        imbNopBai = findViewById(R.id.imbNopBai);
         imbBackLT = findViewById(R.id.imbBackLT);
         tvIdCH = findViewById(R.id.tvIdCH);
         tvCauHoi = findViewById(R.id.tvCauHoi);
@@ -211,92 +202,6 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnD = findViewById(R.id.btnD);
         btnNextCH = findViewById(R.id.btnNextCH);
     }
-    //xử lý vị trí của dialog
-    /*private void hienThiYN(int gravity) {
-        //xử lý vị trí của dialog
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_dialog_yn);
-
-        Window window = dialog.getWindow();
-        if (window == null)
-            return;
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        //click ra bên ngoài để tắt dialog
-        if (Gravity.CENTER == gravity) {
-            dialog.setCancelable(false);
-        } else {
-            dialog.setCancelable(false);
-        }
-
-
-        btnY = dialog.findViewById(R.id.btnYes);
-        btnN = dialog.findViewById(R.id.btnNo);
-
-
-        btnY.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LuyenThiActivity.this, MonHocActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }*/
-    //xử lý vị trí của dialog
-    /*private void hienThiThongBao(int gravity) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.activity_dialog_message);
-
-        Window window = dialog.getWindow();
-        if (window == null)
-            return;
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        //click ra bên ngoài để tắt dialog
-        if (Gravity.CENTER == gravity) {
-            dialog.setCancelable(false);
-        } else {
-            dialog.setCancelable(false);
-        }
-
-
-        btnNopBai = dialog.findViewById(R.id.btnNopBai);
-        btnHuy = dialog.findViewById(R.id.btnHuy);
-
-
-        btnNopBai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                hienThiKetQua(Gravity.CENTER);
-            }
-        });
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }*/
     //xử lý vị trí của dialog
     private void hienThiKetQua(int gravity, List<CauHoiDto> cauHoiDtoList) {
         final Dialog dialog = new Dialog(this);
@@ -319,14 +224,11 @@ public class LuyenThiActivity extends AppCompatActivity{
         } else {
             dialog.setCancelable(false);
         }
-
-
         tvKetQua = dialog.findViewById(R.id.tvKetQua);
         tvDiem = dialog.findViewById(R.id.tvDiem);
         tvKetQua.setText("Đúng "+diem + "/" + tongCH+" câu hỏi");
         tvDiem.setText(diem + " điểm");
         //Toast.makeText(this, "Điểm = "+ dem, Toast.LENGTH_SHORT).show();
-
 
         btnThiLai = dialog.findViewById(R.id.btnThiLai);
         btnKetQua = dialog.findViewById(R.id.btnKetQua);
@@ -342,10 +244,10 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnKetQua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(LuyenThiActivity.this, LichSuThiActivity.class));
+                dialog.dismiss();
             }
         });
-
         dialog.show();//quan trọng
     }
-
 }

@@ -29,12 +29,6 @@
                 android:id="@+id/tvMonThi"
                 style="@style/tenMonThi"
                 android:text="Môn thi" />
-
-            <ImageButton
-                android:id="@+id/imbNopBai"
-                style="@style/nopBai"
-                android:src="@drawable/ic_save"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
     </RelativeLayout>
     <TextView
