@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Luyện Thi</string>
+    <string name="error_user_login">Vui lòng nhập Username</string>
+    <string name="error_pass_login">Vui lòng nhập Password</string>
+</resources>

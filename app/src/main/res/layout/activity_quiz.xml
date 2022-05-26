@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/ic_bg"
+    tools:context=".controller.LuyenThiActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#bbdecc">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imbBackLT"
+                style="@style/button_back"
+                android:src="@drawable/ic_arrow_back"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tvMonThi"
+                style="@style/tenMonThi"
+                android:text="Môn thi" />
+
+            <ImageButton
+                android:id="@+id/imbNopBai"
+                style="@style/nopBai"
+                android:src="@drawable/ic_save"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvIdCH"
+        style="@style/sttCauHoi" />
+    <TextView
+        android:id="@+id/tvCauHoi"
+        style="@style/noiDungCH" />
+    <ProgressBar
+        android:id="@+id/pbLoad"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnA"
+        android:layout_marginTop="40dp"
+        style="@style/button_click_quiz" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnB"
+        android:layout_marginTop="20dp"
+        style="@style/button_click_quiz"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnC"
+        android:layout_marginTop="20dp"
+        style="@style/button_click_quiz"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnD"
+        android:layout_marginTop="20dp"
+        style="@style/button_click_quiz"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNextCH"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#D5DDE3"
+            android:background="@drawable/round_border_onclick"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="Next"/>
+    </LinearLayout>
+
+</LinearLayout>

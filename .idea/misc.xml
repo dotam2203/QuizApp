@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Studio/QuizApp/app/src/main/res/layout/activity_dialog_result.xml" value="0.25" />
+        <entry key="..\:/Android Studio/QuizApp/app/src/main/res/layout/activity_quiz.xml" value="0.25" />
+        <entry key="..\:/Android Studio/QuizApp/app/src/main/res/layout/activity_subject.xml" value="0.4" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/border_bg.xml" value="0.18796296296296297" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/border_home_bg.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/button_bg.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/ic_circle.xml" value="0.1275" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/ic_lock_login.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_answer_gray10.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_answer_green10.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_bg_border_purple30.xml" value="0.2564814814814815" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_boder10.xml" value="0.11203703703703703" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border10_click.xml" value="0.25092592592592594" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border90.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_answer.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_back.xml" value="0.1814814814814815" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_blue10.xml" value="0.26205128205128203" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_green20.xml" value="0.2537037037037037" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_home.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_onclick.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_purple10.xml" value="0.11018518518518519" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_purple60.xml" value="0.25462962962962965" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_quiz.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_top.xml" value="0.2537037037037037" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_top16.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_top20.xml" value="0.2537037037037037" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_while30.xml" value="0.26205128205128203" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_white16.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_border_yellow10.xml" value="0.20833333333333334" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_button.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_click_mh.xml" value="0.26205128205128203" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_click_mh1.xml" value="0.26205128205128203" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/round_onclick_quiz.xml" value="0.25092592592592594" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/drawable/wave.xml" value="0.26614583333333336" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_account.xml" value="0.264" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_dialog_logout.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_dialog_message.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_dialog_quiz.xml" value="0.23425925925925925" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_dialog_result.xml" value="0.128" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_dialog_yn.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_history.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_item_subject.xml" value="0.264" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_list_view.xml" value="0.264" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_quiz.xml" value="0.19455252918287938" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_result.xml" value="0.2" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_subject.xml" value="0.264" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_test.xml" value="0.2" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/activity_testt.xml" value="0.25" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/layout/round_border90.xml" value="0.1" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15925925925925927" />
+        <entry key="..\:/Android Studio/ThiTracNghiem/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15925925925925927" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
