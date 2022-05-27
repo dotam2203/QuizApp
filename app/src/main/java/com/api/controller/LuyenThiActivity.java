@@ -275,11 +275,10 @@ public class LuyenThiActivity extends AppCompatActivity{
             @Override
             public void onResponse(Call<ChiTietThiDto> call, Response<ChiTietThiDto> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(LuyenThiActivity.this, "History inserted success!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LuyenThiActivity.this, "History inserted success!", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
-
             @Override
             public void onFailure(Call<ChiTietThiDto> call, Throwable t) {
                 Toast.makeText(LuyenThiActivity.this, "History inserted fail!", Toast.LENGTH_SHORT).show();
@@ -347,28 +346,27 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnKetQua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(LuyenThiActivity.this, LichSuThiActivity.class));
                 //xemLichSu(cauHoiDtoList);
                 dialog.dismiss();
             }
         });
         dialog.show();//quan trọng
     }
-
-    /*public void xemLichSu(List<CauHoiDto> cauHoiDtoList) {
-        diem = 0;
+    public void xemLichSu(List<CauHoiDto> cauHoiDtoList) {
         viTri = 0;
-        loadCauHoiMoi(cauHoiDtoList);
         imbBackLT.setEnabled(false);
         if(viTri == tongCH - 1){
             btnNextCH.setText("Thoát");
+        }
+        if(btnNextCH.getText().equals("Thoát")){
+            startActivity(new Intent(LuyenThiActivity.this,MonHocActivity.class));
         }
         btnA.setEnabled(false);
         btnB.setEnabled(false);
         btnC.setEnabled(false);
         btnD.setEnabled(false);
-        String lc = cauHoiDtoList.get(viTri).getDapAn().toString().trim();
-        String da = cauHoiDtoList.get(viTri).getLuaChon().toString().trim();
+        String lc = cauHoiDtoList.get(viTri).getDapAn();
+        String da = cauHoiDtoList.get(viTri).getLuaChon();
         //#EE0000 : red
         //#00FF00 : green
         if(lc.equals(da)){
@@ -423,6 +421,6 @@ public class LuyenThiActivity extends AppCompatActivity{
                     btnA.setTextColor(Color.parseColor("#EE0000"));
             }
         }
+    }
 
-    }*/
 }

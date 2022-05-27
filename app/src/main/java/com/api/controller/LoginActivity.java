@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final int REQUEST_CODE_REGISTER = 1;
     private EditText txtUserLogin;
     private EditText txtPassLogin;
-    private TextView tvRegister;
     private Button btnLogin;
     private Context context;
 
@@ -50,7 +49,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setControl();
         getListAccount();
         btnLogin.setOnClickListener(this);
-        tvRegister.setOnClickListener(this);
     }
 
     @Override
@@ -59,15 +57,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (luachon){
             case R.id.btnLogin:
                 clickLogin();
-            case R.id.txtRegister:
-                //clickRegister();
         }
     }
 
     private void setControl(){
         txtUserLogin = findViewById(R.id.txtUserLogin);
         txtPassLogin = findViewById(R.id.txtPassLogin);
-        tvRegister = findViewById(R.id.txtRegister);
         btnLogin = findViewById(R.id.btnLogin);
         txtUserLogin.setText("SV01");
         txtPassLogin.setText("123");

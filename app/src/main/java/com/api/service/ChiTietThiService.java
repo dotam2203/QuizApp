@@ -30,6 +30,9 @@ public interface ChiTietThiService {
     @GET("chitietthi/{maMonHoc}")
     Call<List<ChiTietThiDto>> layDSChiTietThiTheoMon(@Path("maMonHoc") String maMonHoc);
 
+    @GET("chitietthi/danhsach/{maTaiKhoan}")
+    Call<List<ChiTietThiDto>> layDSChiTietThiTheoTaiKhoan(@Path("maTaiKhoan") String maTaiKhoan);
+
     @POST("chitietthi")
     Call<ChiTietThiDto> themChiTietThi(@Body ChiTietThiDto chiTietThiDto);
 }

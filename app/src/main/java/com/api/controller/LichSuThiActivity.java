@@ -65,10 +65,9 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
         setGetAllSubject();
         setEvent();
     }
-
     private void setGetAllSubject() {
         pbLoad.setVisibility(View.VISIBLE);
-        ChiTietThiService.chiTietThiService.layDSChiTietThi().enqueue(new Callback<List<ChiTietThiDto>>() {
+        ChiTietThiService.chiTietThiService.layDSChiTietThiTheoTaiKhoan(taiKhoanDto.getMaTaiKhoan()).enqueue(new Callback<List<ChiTietThiDto>>() {
             @Override
             public void onResponse(Call<List<ChiTietThiDto>> call, Response<List<ChiTietThiDto>> response) {
                 Toast.makeText(LichSuThiActivity.this, "Get History Successful!", Toast.LENGTH_SHORT).show();
@@ -78,7 +77,6 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
                     pbLoad.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onFailure(Call<List<ChiTietThiDto>> call, Throwable t) {
                 pbLoad.setVisibility(View.GONE);
@@ -86,7 +84,6 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
             }
         });
     }
-
     private void setEvent() {
         imbBackLS.setOnClickListener(new View.OnClickListener() {
             @Override
