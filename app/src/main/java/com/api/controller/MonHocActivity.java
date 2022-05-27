@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,35 +30,33 @@ import com.api.service.MonHocService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.ItemClickMH {
-
     public final List<MonHocDto> monHocDtoList = new ArrayList<>();
     public MonHocAdapter monHocAdapter;
     public MonHocDto monHocDto = null;
+    List<MonHocDto> filter;
 
-    private ImageButton imbBackMH;
-    private RecyclerView rvDSMH;
-    private ProgressBar pbLoad;
-    private LinearLayoutManager layoutManager;
+    ImageButton imbBackMH;
+    RecyclerView rvDSMH;
+    ProgressBar pbLoad;
+    LinearLayoutManager layoutManager;
 
-    private TextView tvMonBDThi;
-    private Button btnDongY, btnThoat;
+    TextView tvMonBDThi;
+    Button btnDongY, btnThoat;
+    SearchView searchMH;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
-
-        imbBackMH = findViewById(R.id.imbBackMH);
-        rvDSMH = findViewById(R.id.rvDSMonHoc);
-        pbLoad = findViewById(R.id.pbLoad);
-
+        setControl();
 
         layoutManager = new LinearLayoutManager(this);
         rvDSMH.setLayoutManager(layoutManager);
@@ -65,8 +64,17 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         rvDSMH.addItemDecoration(inDecoration);
         monHocAdapter = new MonHocAdapter(monHocDtoList, this);
         rvDSMH.setAdapter(monHocAdapter);
+
         setGetAllSubject();
         setEvent();
+    }
+
+    private void setControl() {
+        imbBackMH = findViewById(R.id.imbBackMH);
+        rvDSMH = findViewById(R.id.rvDSMonHoc);
+        pbLoad = findViewById(R.id.pbLoad);
+        searchMH = findViewById(R.id.searchMH);
+
     }
 
     private void setEvent() {
@@ -77,6 +85,32 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
                 finish();
             }
         });
+        searchMH.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getFilter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getFilter(newText);
+                return false;
+            }
+        });
+    }
+
+    private void getFilter(String s) {
+        filter = new ArrayList<>();
+        for(MonHocDto m : monHocDtoList){
+            if(m.getMaMonHoc().toLowerCase().contains(s.toLowerCase())|| m.getTenMonHoc().toLowerCase().contains(s.toLowerCase())){
+                filter.add(m);
+            }
+        }
+        monHocAdapter.setFilterList(filter);
+        if(filter.isEmpty()){
+            Toast.makeText(this, "Không tìm thấy môn học!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setGetAllSubject() {

@@ -28,14 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Lịch sử thi"
+            android:text="CHI TIẾT THI"
             android:textColor="@color/purple_500"
             android:textSize="22sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/svSearch"
+        android:id="@+id/searchCTT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tbTitle"
@@ -53,13 +53,13 @@
         android:layout_gravity="center"
         android:visibility="gone" />
     <LinearLayout
-        android:layout_below="@+id/svSearch"
+        android:layout_below="@+id/searchCTT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDSMonHoc"
+            android:id="@+id/rvDSCTT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp">

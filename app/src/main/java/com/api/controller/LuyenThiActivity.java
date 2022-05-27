@@ -1,6 +1,5 @@
 package com.api.controller;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,14 +10,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -27,6 +23,7 @@ import com.api.dto.CauHoiDto;
 import com.api.dto.MonHocDto;
 import com.api.service.CauHoiService;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +34,8 @@ import retrofit2.Response;
 public class LuyenThiActivity extends AppCompatActivity{
     private MonHocDto monHocDto = null;
     private List<CauHoiDto> cauHoiDtoList = new ArrayList<>(0);
-
+    Date date;
+    long millis = System.currentTimeMillis();
     Bundle bundle;
     private ProgressBar pbLoad;
     private ImageButton imbBackLT;
@@ -54,7 +52,6 @@ public class LuyenThiActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         getControl();
-        pbLoad.setVisibility(View.VISIBLE);
         bundle = getIntent().getExtras();
         if (bundle != null) {
             monHocDto = (MonHocDto) bundle.getSerializable("mon_thi");
@@ -63,6 +60,7 @@ public class LuyenThiActivity extends AppCompatActivity{
         CauHoiService.cauHoiService.layDSCauHoiTheoMon(monHocDto.getMaMonHoc(), "a").enqueue(new Callback<List<CauHoiDto>>() {
             @Override
             public void onResponse(Call<List<CauHoiDto>> call, Response<List<CauHoiDto>> response) {
+                pbLoad.setVisibility(View.VISIBLE);
                 List<CauHoiDto> cauHoiDtoList = new ArrayList<>();
                 if (response.isSuccessful() && response.body() != null)
                     cauHoiDtoList = response.body();
@@ -79,7 +77,11 @@ public class LuyenThiActivity extends AppCompatActivity{
             }
         });
     }
-
+    /*@Override
+    protected void onRestart() {
+        loadCauHoiMoi(cauHoiDtoList);
+        super.onRestart();
+    }*/
     private void getEvent(List<CauHoiDto> cauHoiDtoList) {
         imbBackLT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,13 +249,11 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnC.setText(cauHoiDtoList.get(viTri).getC());
         btnD.setText(cauHoiDtoList.get(viTri).getD());
     }
-
     private void thiLai(List<CauHoiDto> cauHoiDtoList) {
         diem = 0;
         viTri = 0;
         loadCauHoiMoi(cauHoiDtoList);
     }
-
     private void getControl() {
         pbLoad = findViewById(R.id.pbLoad);
         tvMonThi = findViewById(R.id.tvMonThi);
@@ -265,6 +265,8 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnC = findViewById(R.id.btnC);
         btnD = findViewById(R.id.btnD);
         btnNextCH = findViewById(R.id.btnNextCH);
+
+        imbBackLT.setEnabled(true);
     }
     //xử lý vị trí của dialog
     private void hienThiKetQua(int gravity, List<CauHoiDto> cauHoiDtoList) {
@@ -309,9 +311,81 @@ public class LuyenThiActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LuyenThiActivity.this, LichSuThiActivity.class));
+                //xemLichSu(cauHoiDtoList);
                 dialog.dismiss();
             }
         });
         dialog.show();//quan trọng
     }
+
+    /*public void xemLichSu(List<CauHoiDto> cauHoiDtoList) {
+        diem = 0;
+        viTri = 0;
+        loadCauHoiMoi(cauHoiDtoList);
+        imbBackLT.setEnabled(false);
+        if(viTri == tongCH - 1){
+            btnNextCH.setText("Thoát");
+        }
+        btnA.setEnabled(false);
+        btnB.setEnabled(false);
+        btnC.setEnabled(false);
+        btnD.setEnabled(false);
+        String lc = cauHoiDtoList.get(viTri).getDapAn().toString().trim();
+        String da = cauHoiDtoList.get(viTri).getLuaChon().toString().trim();
+        //#EE0000 : red
+        //#00FF00 : green
+        if(lc.equals(da)){
+            if(da.equals("A")){
+                btnA.setTextColor(Color.parseColor("#00FF00"));
+            }
+            else if(da.equals("B")){
+                btnB.setTextColor(Color.parseColor("#00FF00"));
+            }
+            else if(da.equals("C")){
+                btnC.setTextColor(Color.parseColor("#00FF00"));
+            }
+            else if(da.equals("D")){
+                btnD.setTextColor(Color.parseColor("#00FF00"));
+            }
+        }
+        else{
+            if(da.equals("A")){
+                btnA.setTextColor(Color.parseColor("#00FF00"));
+                if(lc.equals("B"))
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("C"))
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("D"))
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+            }
+            else if(da.equals("B")){
+                btnB.setTextColor(Color.parseColor("#00FF00"));
+                if(lc.equals("A"))
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("C"))
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("D"))
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+            }
+            else if(da.equals("C")){
+                btnC.setTextColor(Color.parseColor("#00FF00"));
+                if(lc.equals("B"))
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("A"))
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("D"))
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+            }
+            else if(da.equals("D")){
+                btnD.setTextColor(Color.parseColor("#00FF00"));
+                if(lc.equals("B"))
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("C"))
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+                else if(lc.equals("A"))
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+            }
+        }
+
+    }*/
 }

@@ -7,7 +7,14 @@
     android:orientation="vertical"
     android:background="@drawable/ic_bg"
     tools:context=".controller.LuyenThiActivity">
-
+    <ProgressBar
+        android:id="@+id/pbLoad"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:visibility="visible" />
     <RelativeLayout
         android:id="@+id/rlTitle"
         android:layout_width="match_parent"
@@ -42,15 +49,6 @@
         android:id="@+id/tvCauHoi"
         android:layout_below="@id/tvIdCH"
         style="@style/noiDungCH" />
-
-    <ProgressBar
-        android:id="@+id/pbLoad"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnA"
@@ -96,5 +94,6 @@
             android:textColor="#D5DDE3"
             android:textStyle="bold"/>
     </LinearLayout>
+
 
 </RelativeLayout>

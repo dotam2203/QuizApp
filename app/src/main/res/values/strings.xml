@@ -2,4 +2,10 @@
     <string name="app_name">Luyện Thi</string>
     <string name="error_user_login">Vui lòng nhập Username</string>
     <string name="error_pass_login">Vui lòng nhập Password</string>
+    <string name="maMT">Mã môn thi</string>
+    <string name="tenMT">Tên môn thi</string>
+    <string name="ngayThi">Ngày thi</string>
+    <string name="diem">Điểm</string>
+    <string name="maTK">Mã tài khoản</string>
+    <string name="hoTen">Họ tên</string>
 </resources>

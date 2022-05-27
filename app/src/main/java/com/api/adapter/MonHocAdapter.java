@@ -24,7 +24,10 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.ViewHolder
         this.monHocDtoList = monHocDtoList;
         this._itemClickMH = itemClickMH;
     }
-
+    public void setFilterList(List<MonHocDto> filter){
+        this.monHocDtoList = filter;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     //định nghĩa các item layout và khởi tạo holder

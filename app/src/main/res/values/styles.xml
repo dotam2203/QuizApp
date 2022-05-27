@@ -81,4 +81,19 @@
         <item name="android:textColor">#052B27</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="style_themltb_tieude">
+        <item name="android:layout_width">125dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="style_themltb_tentltb">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">210dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

@@ -1,18 +1,17 @@
 package com.api.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ChiTietThiDto implements Serializable {
     private int idCTT;
-    private Date ngayThi;
+    private String ngayThi;
     private double diem;
     private String maTaiKhoan;
     private String hoTen;
     private String maMonHoc;
     private String tenMonHoc;
 
-    public ChiTietThiDto(int idCTT, Date ngayThi, double diem, String maTaiKhoan, String hoTen, String maMonHoc, String tenMonHoc) {
+    public ChiTietThiDto(int idCTT, String ngayThi, double diem, String maTaiKhoan, String hoTen, String maMonHoc, String tenMonHoc) {
         this.idCTT = idCTT;
         this.ngayThi = ngayThi;
         this.diem = diem;
@@ -30,11 +29,11 @@ public class ChiTietThiDto implements Serializable {
         this.idCTT = idCTT;
     }
 
-    public Date getNgayThi() {
+    public String getNgayThi() {
         return ngayThi;
     }
 
-    public void setNgayThi(Date ngayThi) {
+    public void setNgayThi(String ngayThi) {
         this.ngayThi = ngayThi;
     }
 
