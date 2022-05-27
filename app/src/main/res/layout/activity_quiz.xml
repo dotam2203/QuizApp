@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".controller.LuyenThiActivity">
 
     <RelativeLayout
+        android:id="@+id/rlTitle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#bbdecc">
@@ -31,50 +32,69 @@
                 android:text="Môn thi" />
         </LinearLayout>
     </RelativeLayout>
+
     <TextView
         android:id="@+id/tvIdCH"
-        style="@style/sttCauHoi" />
+        style="@style/sttCauHoi"
+        android:layout_below="@+id/rlTitle"
+        android:layout_centerInParent="true" />
     <TextView
         android:id="@+id/tvCauHoi"
+        android:layout_below="@id/tvIdCH"
         style="@style/noiDungCH" />
+
     <ProgressBar
         android:id="@+id/pbLoad"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnA"
-        android:layout_marginTop="40dp"
-        style="@style/button_click_quiz" />
+        style="@style/button_click_quiz"
+        android:layout_below="@id/tvCauHoi"
+        android:layout_marginTop="40dp" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnB"
-        android:layout_marginTop="20dp"
-        style="@style/button_click_quiz"/>
+        style="@style/button_click_quiz"
+        android:layout_below="@id/btnA"
+        android:layout_marginTop="20dp" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnC"
-        android:layout_marginTop="20dp"
-        style="@style/button_click_quiz"/>
+        style="@style/button_click_quiz"
+        android:layout_below="@id/btnB"
+        android:layout_marginTop="20dp" />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnD"
+        android:layout_below="@id/btnC"
         android:layout_marginTop="20dp"
         style="@style/button_click_quiz"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@id/rlTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="550dp"
+        android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNextCH"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#D5DDE3"
-            android:background="@drawable/round_border_onclick"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="Next"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_border_onclick"
+            android:text="Next"
+            android:textColor="#D5DDE3"
+            android:textStyle="bold"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

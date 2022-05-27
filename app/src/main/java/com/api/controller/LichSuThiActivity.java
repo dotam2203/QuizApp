@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.api.R;
 
 public class LichSuThiActivity extends AppCompatActivity {
     Button btnClick, btnThiLai, btnKetQua;
+    ImageButton imbBackLS;
 
 
     @Override
@@ -30,16 +32,15 @@ public class LichSuThiActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        btnClick.setOnClickListener(new View.OnClickListener() {
+        imbBackLS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //callDialog(Gravity.CENTER);
-                message();
+                finish();
             }
         });
     }
 
-    private void message() {
+   /* private void message() {
         //sử dụng dialog hiển thị thông báo
         AlertDialog.Builder mess = new AlertDialog.Builder(LichSuThiActivity.this);
         //xác định tiêu đề
@@ -63,15 +64,13 @@ public class LichSuThiActivity extends AppCompatActivity {
         AlertDialog alertDialog = mess.create();
         //hiển thị
         alertDialog.show();
-    }
+    }*/
 
     private void setControl() {
-        btnClick = findViewById(R.id.btnClick);
-
-
+        imbBackLS = findViewById(R.id.imbBackLS);
     }
     //xử lý vị trí của dialog
-    private void callDialog(int gravity){
+    /*private void callDialog(int gravity){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_dialog_result);
@@ -117,5 +116,5 @@ public class LichSuThiActivity extends AppCompatActivity {
         });
 
         dialog.show();//quan trọng
-    }
+    }*/
 }

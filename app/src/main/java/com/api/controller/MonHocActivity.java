@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,11 +73,10 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         imbBackMH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MonHocActivity.this, HomeActivity.class);
-                startActivity(intent);
+                //startActivity(new Intent(MonHocActivity.this, HomeActivity.class));
+                finish();
             }
         });
-
     }
 
     private void setGetAllSubject() {
@@ -190,6 +188,7 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
                     intent.putExtras(bundle);
 
                     startActivity(intent);
+                    dialog.dismiss();
             }
         });
 
@@ -197,7 +196,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
             @Override
             public void onClick(View view) {
                 dialog.dismiss();//đóng dialog
-
             }
         });
 

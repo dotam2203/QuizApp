@@ -17,22 +17,22 @@
             android:background="@drawable/round_border90">
 
             <TextView
-                android:id="@+id/tvMaMH"
+                android:id="@+id/tvNgayThi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Mã môn học"
+                android:text="yyyy/mm/dd"
                 android:textColor="@color/purple_500"
                 android:textSize="16sp" />
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tvTenMH"
+            android:id="@+id/tvMonThi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="150dp"
-            android:text="Tên môn học"
+            android:text="Môn thi"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </RelativeLayout>

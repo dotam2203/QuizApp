@@ -42,7 +42,7 @@ public class LuyenThiActivity extends AppCompatActivity{
     private ProgressBar pbLoad;
     private ImageButton imbBackLT;
     private TextView tvMonThi, tvIdCH, tvCauHoi, tvKetQua, tvDiem;
-    private AppCompatButton btnNopBai, btnHuy, btnThiLai, btnKetQua, btnY, btnN, btnA, btnB, btnC, btnD, btnNextCH;
+    private AppCompatButton btnThiLai, btnKetQua, btnHuy, btnThiTiep, btnA, btnB, btnC, btnD, btnNextCH;
 
     int viTri = 0, tongCH = 10;
     int diem = 0;
@@ -84,7 +84,8 @@ public class LuyenThiActivity extends AppCompatActivity{
         imbBackLT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
+                //startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
+                hienThiYN(Gravity.CENTER);
             }
         });
         btnA.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +93,13 @@ public class LuyenThiActivity extends AppCompatActivity{
             public void onClick(View view) {
                 luaChon = "A";
                 btnA.setBackgroundResource(R.drawable.round_answer_green10);
+                btnA.setTextColor(Color.parseColor("#FFFFFF"));
                 btnB.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnB.setTextColor(Color.parseColor("#05152C"));
                 btnC.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnC.setTextColor(Color.parseColor("#05152C"));
                 btnD.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnD.setTextColor(Color.parseColor("#05152C"));
             }
         });
         btnB.setOnClickListener(new View.OnClickListener() {
@@ -102,9 +107,13 @@ public class LuyenThiActivity extends AppCompatActivity{
             public void onClick(View view) {
                 luaChon = "B";
                 btnB.setBackgroundResource(R.drawable.round_answer_green10);
+                btnB.setTextColor(Color.parseColor("#FFFFFF"));
                 btnA.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnA.setTextColor(Color.parseColor("#05152C"));
                 btnC.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnC.setTextColor(Color.parseColor("#05152C"));
                 btnD.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnD.setTextColor(Color.parseColor("#05152C"));
             }
         });
         btnC.setOnClickListener(new View.OnClickListener() {
@@ -112,9 +121,13 @@ public class LuyenThiActivity extends AppCompatActivity{
             public void onClick(View view) {
                 luaChon = "C";
                 btnC.setBackgroundResource(R.drawable.round_answer_green10);
+                btnC.setTextColor(Color.parseColor("#FFFFFF"));
                 btnA.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnA.setTextColor(Color.parseColor("#05152C"));
                 btnB.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnB.setTextColor(Color.parseColor("#05152C"));
                 btnD.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnD.setTextColor(Color.parseColor("#05152C"));
             }
         });
         btnD.setOnClickListener(new View.OnClickListener() {
@@ -122,18 +135,26 @@ public class LuyenThiActivity extends AppCompatActivity{
             public void onClick(View view) {
                 luaChon = "D";
                 btnD.setBackgroundResource(R.drawable.round_answer_green10);
+                btnD.setTextColor(Color.parseColor("#FFFFFF"));//#05152C
                 btnA.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnA.setTextColor(Color.parseColor("#05152C"));
                 btnB.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnB.setTextColor(Color.parseColor("#05152C"));
                 btnC.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnC.setTextColor(Color.parseColor("#05152C"));
             }
         });
         btnNextCH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 btnA.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnA.setTextColor(Color.parseColor("#05152C"));
                 btnB.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnB.setTextColor(Color.parseColor("#05152C"));
                 btnC.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnC.setTextColor(Color.parseColor("#05152C"));
                 btnD.setBackgroundResource(R.drawable.round_answer_gray10);
+                btnD.setTextColor(Color.parseColor("#05152C"));
                 if(luaChon.isEmpty()){
                     Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
                 }
@@ -157,7 +178,50 @@ public class LuyenThiActivity extends AppCompatActivity{
             }
         });
     }
+    private void hienThiYN(int gravity) {
+        //xử lý vị trí của dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_dialog_yn);
 
+        Window window = dialog.getWindow();
+        if (window == null)
+            return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        //click ra bên ngoài để tắt dialog
+        if (Gravity.CENTER == gravity) {
+            dialog.setCancelable(false);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+
+        btnThiTiep = dialog.findViewById(R.id.btnThiTiep);
+        btnHuy = dialog.findViewById(R.id.btnHuy);
+
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
+                finish();
+                dialog.dismiss();
+            }
+        });
+        btnThiTiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
     public void soSanhKQ(List<CauHoiDto> cauHoiDtoList,String luachon, String dapan){
         dapan = cauHoiDtoList.get(viTri).getDapAn();
         if(luachon.equals(dapan))

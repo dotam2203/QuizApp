@@ -3,10 +3,11 @@
 
     <style name="button_click_quiz">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">#1F6BD8</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#05152C</item>
         <item name="android:background">@drawable/round_onclick_quiz</item>
         <item name="android:layout_marginEnd">20dp</item>
     </style>
@@ -16,13 +17,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>
-        <item name="android:background">@drawable/round_border_purple60</item>
+        <item name="android:background">@drawable/round_border_top20</item>
         <item name="android:drawablePadding">14dp</item>
         <item name="android:ems">10</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:padding">14dp</item>
-        <item name="android:textColor">#7C1D8C</item>
+        <item name="android:textColor">@color/purple_500</item>
     </style>
 
     <style name="button_back">
@@ -72,12 +73,12 @@
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">40dp</item>
-        <item name="android:background">@drawable/round_border_green20</item>
+        <item name="android:background">@drawable/round_border10_click</item>
         <item name="android:elevation">1dp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">15dp</item>
-        <item name="android:textColor">#1F6888</item>
+        <item name="android:textColor">#052B27</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>
