@@ -1,8 +1,6 @@
 package com.api.controller;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,13 +8,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -27,6 +23,7 @@ import com.api.R;
 import com.api.adapter.ChiTietThiAdapter;
 import com.api.dto.ChiTietThiDto;
 import com.api.dto.MonHocDto;
+import com.api.dto.TaiKhoanDto;
 import com.api.service.ChiTietThiService;
 
 import java.util.ArrayList;
@@ -39,7 +36,7 @@ import retrofit2.Response;
 public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAdapter.ItemClickCTT{
     public final List<ChiTietThiDto> chiTietThiDtoList = new ArrayList<>();
     public ChiTietThiAdapter chiTietThiAdapter;
-    public ChiTietThiDto chiTietThiDto = null;
+    TaiKhoanDto taiKhoanDto;
     List<ChiTietThiDto> filter;
 
     ImageButton imbBackLS;
@@ -52,6 +49,10 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        //nhận dữ liệu đăng nhập từ LoginActivity qua
+        Bundle bundle = getIntent().getExtras();
+        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable("user_login");
+
         setControl();
 
         layoutManager = new LinearLayoutManager(this);
@@ -109,7 +110,7 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
     private void getFilter(String s) {
         filter = new ArrayList<>();
         for(ChiTietThiDto m : chiTietThiDtoList){
-            if(m.getNgayThi().toString().toLowerCase().contains(s.toLowerCase())|| m.getTenMonHoc().toLowerCase().contains(s.toLowerCase())){
+            if(m.getNgayThi().toLowerCase().contains(s.toLowerCase())|| m.getTenMonHoc().toLowerCase().contains(s.toLowerCase())){
                 filter.add(m);
             }
         }

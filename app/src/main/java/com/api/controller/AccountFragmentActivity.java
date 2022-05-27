@@ -1,5 +1,6 @@
 package com.api.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,5 @@ public class AccountFragmentActivity extends Fragment {
             tvEmail.setText(taiKhoanDto.getEmail());
             tvName.setText(taiKhoanDto.getHo() + " " +taiKhoanDto.getTen());
         }
-
     }
 }

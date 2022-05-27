@@ -20,8 +20,11 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.api.R;
 import com.api.dto.CauHoiDto;
+import com.api.dto.ChiTietThiDto;
 import com.api.dto.MonHocDto;
+import com.api.dto.TaiKhoanDto;
 import com.api.service.CauHoiService;
+import com.api.service.ChiTietThiService;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -33,10 +36,11 @@ import retrofit2.Response;
 
 public class LuyenThiActivity extends AppCompatActivity{
     private MonHocDto monHocDto = null;
+    private TaiKhoanDto taiKhoanDto = null;
     private List<CauHoiDto> cauHoiDtoList = new ArrayList<>(0);
     Date date;
     long millis = System.currentTimeMillis();
-    Bundle bundle;
+    Bundle bundle1, bundle2;
     private ProgressBar pbLoad;
     private ImageButton imbBackLT;
     private TextView tvMonThi, tvIdCH, tvCauHoi, tvKetQua, tvDiem;
@@ -52,20 +56,22 @@ public class LuyenThiActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         getControl();
-        bundle = getIntent().getExtras();
-        if (bundle != null) {
-            monHocDto = (MonHocDto) bundle.getSerializable("mon_thi");
-            tvMonThi.setText(monHocDto.getTenMonHoc());
+        bundle1 = getIntent().getExtras();
+        bundle2 = getIntent().getExtras();
+        if (bundle1 != null && bundle2 != null) {
+            monHocDto = (MonHocDto) bundle1.getSerializable("mon_thi");
+            taiKhoanDto = (TaiKhoanDto) bundle2.getSerializable("user_login");
+            tvMonThi.setText(monHocDto.getTenMonHoc().toUpperCase());
         }
+        pbLoad.setVisibility(View.VISIBLE);
         CauHoiService.cauHoiService.layDSCauHoiTheoMon(monHocDto.getMaMonHoc(), "a").enqueue(new Callback<List<CauHoiDto>>() {
             @Override
             public void onResponse(Call<List<CauHoiDto>> call, Response<List<CauHoiDto>> response) {
-                pbLoad.setVisibility(View.VISIBLE);
                 List<CauHoiDto> cauHoiDtoList = new ArrayList<>();
                 if (response.isSuccessful() && response.body() != null)
                     cauHoiDtoList = response.body();
                 Log.d("CauHoiSuccess", cauHoiDtoList.get(viTri).getNoiDung());
-                Toast.makeText(LuyenThiActivity.this, "Get Quiz Successful!" + cauHoiDtoList.get(viTri).getDapAn(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LuyenThiActivity.this, "Get Quiz Successful!", Toast.LENGTH_SHORT).show();
 
                 loadCauHoiMoi(cauHoiDtoList);
                 pbLoad.setVisibility(View.GONE);
@@ -176,6 +182,9 @@ public class LuyenThiActivity extends AppCompatActivity{
                     }
                     viTri++;
                     loadCauHoiMoi(cauHoiDtoList);
+                    if(luaChon.isEmpty()){
+                        Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -230,14 +239,26 @@ public class LuyenThiActivity extends AppCompatActivity{
             diem++;
         else
             cauHoiDtoList.get(viTri).setLuaChon(luachon);
-        Toast.makeText(LuyenThiActivity.this, "Điểm hiện tại: "+diem, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(LuyenThiActivity.this, "Điểm hiện tại: "+diem, Toast.LENGTH_SHORT).show();
     }
     private void loadCauHoiMoi(List<CauHoiDto> cauHoiDtoList) {
         if(viTri == tongCH - 1){
             btnNextCH.setText("Submit");
         }
         if(viTri == tongCH){
+            date = new Date(millis);
+            ChiTietThiDto chiTietThiDto = new ChiTietThiDto();
+            String hoten = taiKhoanDto.getHo()+" "+taiKhoanDto.getTen();
             hienThiKetQua(Gravity.CENTER,cauHoiDtoList);
+            //------------------------
+            chiTietThiDto.setNgayThi(date.toString());
+            chiTietThiDto.setDiem(diem);
+            chiTietThiDto.setMaTaiKhoan(taiKhoanDto.getMaTaiKhoan());
+            chiTietThiDto.setHoTen(hoten);
+            chiTietThiDto.setMaMonHoc(monHocDto.getMaMonHoc());
+            chiTietThiDto.setTenMonHoc(monHocDto.getTenMonHoc());
+            themCTT(chiTietThiDto);
+            //------------------------
             return;
         }
 
@@ -248,6 +269,22 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnB.setText(cauHoiDtoList.get(viTri).getB());
         btnC.setText(cauHoiDtoList.get(viTri).getC());
         btnD.setText(cauHoiDtoList.get(viTri).getD());
+    }
+    private void themCTT(ChiTietThiDto chiTietThiDto){
+        ChiTietThiService.chiTietThiService.themChiTietThi(chiTietThiDto).enqueue(new Callback<ChiTietThiDto>() {
+            @Override
+            public void onResponse(Call<ChiTietThiDto> call, Response<ChiTietThiDto> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(LuyenThiActivity.this, "History inserted success!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ChiTietThiDto> call, Throwable t) {
+                Toast.makeText(LuyenThiActivity.this, "History inserted fail!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private void thiLai(List<CauHoiDto> cauHoiDtoList) {
         diem = 0;
@@ -310,7 +347,7 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnKetQua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LuyenThiActivity.this, LichSuThiActivity.class));
+                //startActivity(new Intent(LuyenThiActivity.this, LichSuThiActivity.class));
                 //xemLichSu(cauHoiDtoList);
                 dialog.dismiss();
             }

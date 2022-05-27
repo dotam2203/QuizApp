@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Danh Sách Môn Học"
+            android:text="DANH SÁCH MÔN HỌC"
             android:textColor="@color/purple_500"
             android:textSize="22sp"
             android:textStyle="bold" />

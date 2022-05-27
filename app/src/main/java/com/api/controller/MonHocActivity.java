@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.api.R;
 import com.api.adapter.MonHocAdapter;
 import com.api.dto.MonHocDto;
+import com.api.dto.TaiKhoanDto;
 import com.api.service.MonHocService;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
     public final List<MonHocDto> monHocDtoList = new ArrayList<>();
     public MonHocAdapter monHocAdapter;
     public MonHocDto monHocDto = null;
+    TaiKhoanDto taiKhoanDto;
     List<MonHocDto> filter;
 
     ImageButton imbBackMH;
@@ -56,6 +58,10 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
+        //nhận dữ liệu đăng nhập từ HomeFragmentActivity qua
+        Bundle bundle = getIntent().getExtras();
+        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable("user_login");
+
         setControl();
 
         layoutManager = new LinearLayoutManager(this);
@@ -67,6 +73,11 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
 
         setGetAllSubject();
         setEvent();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     private void setControl() {
@@ -133,7 +144,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
             }
         });
     }
-
     @Override
     public void onItemClick(MonHocDto monHocDto) {
         if (monHocDto.getCauHoi().size() < 10) {
@@ -153,9 +163,7 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
             callDialog(Gravity.CENTER, monHocDto);
             //message();
         }
-
     }
-
     private void message() {
         //sử dụng dialog hiển thị thông báo
         AlertDialog.Builder mess = new AlertDialog.Builder(MonHocActivity.this);
@@ -217,9 +225,14 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
 
                     //dialog.dismiss();
                     Intent intent = new Intent(MonHocActivity.this, LuyenThiActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("mon_thi", monhoc);
-                    intent.putExtras(bundle);
+                    //truyền môn thi qua LuyenThiActivity
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putSerializable("mon_thi", monhoc);
+                    intent.putExtras(bundle1);
+                    //truyền tài khoản qua LuyenThiActivity
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putSerializable("user_login", taiKhoanDto);
+                    intent.putExtras(bundle2);
 
                     startActivity(intent);
                     dialog.dismiss();

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.api.R;
+import com.api.dto.ChiTietThiDto;
 import com.api.dto.TaiKhoanDto;
 
 public class HomeFragmentActivity extends Fragment {
@@ -53,7 +54,13 @@ public class HomeFragmentActivity extends Fragment {
             public void onClick(View view) {
                 llLT.setBackgroundResource(R.drawable.round_border_green20);
                 llLS.setBackgroundResource(R.drawable.round_border_while30);
-                startActivity(new Intent(getContext(),MonHocActivity.class));
+                //truyền dữ liệu tk qua MonHocActivity
+                Intent intent = new Intent(getContext(),MonHocActivity.class);
+                Bundle send = new Bundle();
+                send.putSerializable("user_login",taiKhoanDto);
+                intent.putExtras(send);
+                startActivity(intent);
+
             }
         });
         llLS.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +68,13 @@ public class HomeFragmentActivity extends Fragment {
             public void onClick(View view) {
                 llLS.setBackgroundResource(R.drawable.round_border_green20);
                 llLT.setBackgroundResource(R.drawable.round_border_while30);
-                startActivity(new Intent(getContext(),LichSuThiActivity.class));
+                //startActivity(new Intent(getContext(),LichSuThiActivity.class));
+                //truyền dữ liệu tk qua ChiTietThiActivity
+                Intent intent = new Intent(getContext(), LichSuThiActivity.class);
+                Bundle send = new Bundle();
+                send.putSerializable("user_login",taiKhoanDto);
+                intent.putExtras(send);
+                startActivity(intent);
             }
         });
         imvLogout.setOnClickListener(new View.OnClickListener() {

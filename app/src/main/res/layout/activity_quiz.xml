@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/tvMonThi"
                 style="@style/tenMonThi"
-                android:text="Môn thi" />
+                android:text="MÔN THI" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -54,7 +54,7 @@
         android:id="@+id/btnA"
         style="@style/button_click_quiz"
         android:layout_below="@id/tvCauHoi"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="30dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnB"

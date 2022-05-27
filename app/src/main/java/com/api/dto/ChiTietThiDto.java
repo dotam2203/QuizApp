@@ -11,6 +11,9 @@ public class ChiTietThiDto implements Serializable {
     private String maMonHoc;
     private String tenMonHoc;
 
+    public ChiTietThiDto() {
+    }
+
     public ChiTietThiDto(int idCTT, String ngayThi, double diem, String maTaiKhoan, String hoTen, String maMonHoc, String tenMonHoc) {
         this.idCTT = idCTT;
         this.ngayThi = ngayThi;
