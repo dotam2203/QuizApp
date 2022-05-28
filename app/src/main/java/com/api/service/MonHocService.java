@@ -32,12 +32,4 @@ public interface MonHocService {
     @GET("monhoc/{maMonHoc}")
     Call<MonHocDto> layMonHoc(@Path("maMonHoc") String maMonHoc);
 
-    @POST("monhoc")
-    Call<MonHocDto> themMonHoc(@Body MonHocDto monHocDto);
-
-    @PUT("monhoc")
-    Call<MonHocDto> suaMonHoc(@Body MonHocDto monHocDto);
-
-    @DELETE("{maMonHoc}")
-    Call<Void> xoaMonHoc(@Path("maMonHoc") String maMonHoc);
 }

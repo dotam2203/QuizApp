@@ -30,22 +30,6 @@ public interface TaiKhoanService {
             .build()
             .create(TaiKhoanService.class);
 
-    @GET("taikhoan?loai={loai}&ten={ten}") //truyền loại và tên, nếu không có tên thì tên để #
-    Call<List<TaiKhoanDto>> layDSTheoLoai(@Query("loai") String loai,
-                                          @Query("ten") String ten);
-
     @GET("taikhoan/danhsach")
     Call<List<TaiKhoanDto>> layDSTaiKhoan();
-
-    @GET("taikhoan/{maTaiKhoan}")
-    Call<TaiKhoanDto> layTaiKhoan(@Path("maTaiKhoan") String maTaiKhoan);
-
-    @POST("")
-    Call<TaiKhoanDto> themTaiKhoan(@Body TaiKhoanDto taiKhoanDto);
-
-    @PUT("")
-    Call<TaiKhoanDto> suaTaiKhoan(@Body TaiKhoanDto taiKhoanDto);
-
-    @DELETE("taikhoan/{maTaiKhoan}")
-    Call<TaiKhoanDto> xoaTaiKhoan(@Path("maTaiKhoan") String maTaiKhoan);
 }

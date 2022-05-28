@@ -22,8 +22,6 @@ public interface CauHoiService {
             .addConverterFactory(GsonConverterFactory.create(gson)) //Factory phụ thuộc vào format json trả vê
             .build()
             .create(CauHoiService.class);
-    @GET("cauhoi")
-    Call<List<CauHoiDto>> layDSCauHoi();
 
     @GET("cauhoi/danhsach/{maMonHoc}")
     Call<List<CauHoiDto>> layDSCauHoiTheoMon(@Path("maMonHoc") String maMonHoc, @Query("loai") String loai);
