@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         TaiKhoanService.taiKhoanService.layDSTaiKhoan().enqueue(new Callback<List<TaiKhoanDto>>() {
             @Override
             public void onResponse(Call<List<TaiKhoanDto>> call, Response<List<TaiKhoanDto>> response) {
-                Toast.makeText(LoginActivity.this, "Call API Successful", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, "Call API Successful", Toast.LENGTH_SHORT).show();
                 listTK = response.body();
                 Log.e("List Account", listTK.size() + "");
             }
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(isAccount){
             // goto HomeActivity
             Intent intent = new Intent(this, HomeActivity.class);
-            Toast.makeText(LoginActivity.this,"Login Success!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this,"Login Success!",Toast.LENGTH_SHORT).show();
 
             //truyền dữ liệu user qua HomeActivity
             Bundle bundle = new Bundle();
