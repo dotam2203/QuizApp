@@ -77,7 +77,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
 
     @Override
     protected void onRestart() {
-        setGetAllSubject();
         super.onRestart();
     }
 
