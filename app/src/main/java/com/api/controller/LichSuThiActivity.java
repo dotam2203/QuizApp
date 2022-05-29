@@ -70,7 +70,7 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
         ChiTietThiService.chiTietThiService.layDSChiTietThiTheoTaiKhoan(taiKhoanDto.getMaTaiKhoan()).enqueue(new Callback<List<ChiTietThiDto>>() {
             @Override
             public void onResponse(Call<List<ChiTietThiDto>> call, Response<List<ChiTietThiDto>> response) {
-                Toast.makeText(LichSuThiActivity.this, "Get History Successful!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LichSuThiActivity.this, "Get History Successful!", Toast.LENGTH_SHORT).show();
                 if(response.isSuccessful() && response.body() != null){
                     chiTietThiDtoList.addAll(response.body());
                     chiTietThiAdapter.notifyDataSetChanged();

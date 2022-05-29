@@ -70,8 +70,8 @@ public class LuyenThiActivity extends AppCompatActivity {
                 List<CauHoiDto> cauHoiDtoList = new ArrayList<>();
                 if (response.isSuccessful() && response.body() != null)
                     cauHoiDtoList = response.body();
-                Log.d("CauHoiSuccess", cauHoiDtoList.get(viTri).getNoiDung());
-                Toast.makeText(LuyenThiActivity.this, "Get Quiz Successful!", Toast.LENGTH_SHORT).show();
+                //Log.d("CauHoiSuccess", cauHoiDtoList.get(viTri).getNoiDung());
+                //Toast.makeText(LuyenThiActivity.this, "Get Quiz Successful!", Toast.LENGTH_SHORT).show();
 
                 loadCauHoiMoi(cauHoiDtoList);
                 pbLoad.setVisibility(View.GONE);

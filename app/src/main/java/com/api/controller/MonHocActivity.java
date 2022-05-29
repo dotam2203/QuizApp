@@ -130,7 +130,7 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         MonHocService.monHocService.layDSMonHoc().enqueue(new Callback<List<MonHocDto>>() {
             @Override
             public void onResponse(Call<List<MonHocDto>> call, Response<List<MonHocDto>> response) {
-                Toast.makeText(MonHocActivity.this, "Get Subject Successful!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MonHocActivity.this, "Get Subject Successful!", Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful() && response.body() != null) {
                     monHocDtoList.addAll(response.body());
                     monHocAdapter.notifyDataSetChanged();
