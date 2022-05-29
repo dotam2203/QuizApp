@@ -72,7 +72,6 @@ public class LuyenThiActivity extends AppCompatActivity {
                     cauHoiDtoList = response.body();
                 //Log.d("CauHoiSuccess", cauHoiDtoList.get(viTri).getNoiDung());
                 //Toast.makeText(LuyenThiActivity.this, "Get Quiz Successful!", Toast.LENGTH_SHORT).show();
-
                 loadCauHoiMoi(cauHoiDtoList);
                 pbLoad.setVisibility(View.GONE);
                 getEvent(cauHoiDtoList);

@@ -68,7 +68,6 @@ public class HomeFragmentActivity extends Fragment {
             public void onClick(View view) {
                 llLS.setBackgroundResource(R.drawable.round_border_green20);
                 llLT.setBackgroundResource(R.drawable.round_border_while30);
-                //startActivity(new Intent(getContext(),LichSuThiActivity.class));
                 //truyền dữ liệu tk qua ChiTietThiActivity
                 Intent intent = new Intent(getContext(), LichSuThiActivity.class);
                 Bundle send = new Bundle();

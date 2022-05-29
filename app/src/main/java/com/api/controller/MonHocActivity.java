@@ -137,7 +137,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
                     pbLoad.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onFailure(Call<List<MonHocDto>> call, Throwable t) {
                 pbLoad.setVisibility(View.GONE);
