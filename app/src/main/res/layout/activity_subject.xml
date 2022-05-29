@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="DANH SÁCH MÔN HỌC"
+            android:text="DANH SÁCH MÔN THI"
             android:textColor="@color/purple_500"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -67,10 +67,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
-
-
-
-
-
 
 </RelativeLayout>

@@ -34,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LuyenThiActivity extends AppCompatActivity{
+public class LuyenThiActivity extends AppCompatActivity {
     private MonHocDto monHocDto = null;
     private TaiKhoanDto taiKhoanDto = null;
     private List<CauHoiDto> cauHoiDtoList = new ArrayList<>(0);
@@ -77,12 +77,14 @@ public class LuyenThiActivity extends AppCompatActivity{
                 pbLoad.setVisibility(View.GONE);
                 getEvent(cauHoiDtoList);
             }
+
             @Override
             public void onFailure(Call<List<CauHoiDto>> call, Throwable t) {
-                Toast.makeText(LuyenThiActivity.this, "Get Quiz Failed!\n"+t, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LuyenThiActivity.this, "Get Quiz Failed!\n" + t, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     /*@Override
     protected void onRestart() {
         loadCauHoiMoi(cauHoiDtoList);
@@ -163,32 +165,29 @@ public class LuyenThiActivity extends AppCompatActivity{
                 btnC.setTextColor(Color.parseColor("#05152C"));
                 btnD.setBackgroundResource(R.drawable.round_answer_gray10);
                 btnD.setTextColor(Color.parseColor("#05152C"));
-                if(luaChon.isEmpty()){
+                if (luaChon.isEmpty()) {
                     Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     dapAn = cauHoiDtoList.get(viTri).getDapAn();
-                    if(luaChon.equals("A")){
-                        soSanhKQ(cauHoiDtoList,luaChon,dapAn);
-                    }
-                    else if(luaChon.equals("B")){
-                        soSanhKQ(cauHoiDtoList,luaChon,dapAn);
-                    }
-                    else if(luaChon.equals("C")){
-                        soSanhKQ(cauHoiDtoList,luaChon,dapAn);
-                    }
-                    else if(luaChon.equals("D")){
-                        soSanhKQ(cauHoiDtoList,luaChon,dapAn);
+                    if (luaChon.equals("A")) {
+                        soSanhKQ(cauHoiDtoList, luaChon, dapAn);
+                    } else if (luaChon.equals("B")) {
+                        soSanhKQ(cauHoiDtoList, luaChon, dapAn);
+                    } else if (luaChon.equals("C")) {
+                        soSanhKQ(cauHoiDtoList, luaChon, dapAn);
+                    } else if (luaChon.equals("D")) {
+                        soSanhKQ(cauHoiDtoList, luaChon, dapAn);
                     }
                     viTri++;
                     loadCauHoiMoi(cauHoiDtoList);
-                    if(luaChon.isEmpty()){
+                    if (luaChon.isEmpty()) {
                         Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
     }
+
     private void hienThiYN(int gravity) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
@@ -233,23 +232,27 @@ public class LuyenThiActivity extends AppCompatActivity{
         });
         dialog.show();
     }
-    public void soSanhKQ(List<CauHoiDto> cauHoiDtoList,String luachon, String dapan){
+
+    public void soSanhKQ(List<CauHoiDto> cauHoiDtoList, String luachon, String dapan) {
         dapan = cauHoiDtoList.get(viTri).getDapAn();
-        if(luachon.equals(dapan))
+        if (luachon.equals(dapan)){
             diem++;
+            cauHoiDtoList.get(viTri).setLuaChon(luachon);
+        }
         else
             cauHoiDtoList.get(viTri).setLuaChon(luachon);
         //Toast.makeText(LuyenThiActivity.this, "Điểm hiện tại: "+diem, Toast.LENGTH_SHORT).show();
     }
+
     private void loadCauHoiMoi(List<CauHoiDto> cauHoiDtoList) {
-        if(viTri == tongCH - 1){
+        if (viTri == tongCH - 1) {
             btnNextCH.setText("Submit");
         }
-        if(viTri == tongCH){
+        if (viTri == tongCH) {
             date = new Date(millis);
             ChiTietThiDto chiTietThiDto = new ChiTietThiDto();
-            String hoten = taiKhoanDto.getHo()+" "+taiKhoanDto.getTen();
-            hienThiKetQua(Gravity.CENTER,cauHoiDtoList);
+            String hoten = taiKhoanDto.getHo() + " " + taiKhoanDto.getTen();
+            hienThiKetQua(Gravity.CENTER, cauHoiDtoList);
             //------------------------
             chiTietThiDto.setNgayThi(date.toString());
             chiTietThiDto.setDiem(diem);
@@ -263,33 +266,37 @@ public class LuyenThiActivity extends AppCompatActivity{
         }
 
         int idCH = viTri + 1;
-        tvIdCH.setText("Câu hỏi: "+idCH+"/"+tongCH);
+        tvIdCH.setText("Câu hỏi: " + idCH + "/" + tongCH);
         tvCauHoi.setText(cauHoiDtoList.get(viTri).getNoiDung());
         btnA.setText(cauHoiDtoList.get(viTri).getA());
         btnB.setText(cauHoiDtoList.get(viTri).getB());
         btnC.setText(cauHoiDtoList.get(viTri).getC());
         btnD.setText(cauHoiDtoList.get(viTri).getD());
     }
-    private void themCTT(ChiTietThiDto chiTietThiDto){
+
+    private void themCTT(ChiTietThiDto chiTietThiDto) {
         ChiTietThiService.chiTietThiService.themChiTietThi(chiTietThiDto).enqueue(new Callback<ChiTietThiDto>() {
             @Override
             public void onResponse(Call<ChiTietThiDto> call, Response<ChiTietThiDto> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     //Toast.makeText(LuyenThiActivity.this, "History inserted success!", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
+
             @Override
             public void onFailure(Call<ChiTietThiDto> call, Throwable t) {
                 Toast.makeText(LuyenThiActivity.this, "History inserted fail!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void thiLai(List<CauHoiDto> cauHoiDtoList) {
         diem = 0;
         viTri = 0;
         loadCauHoiMoi(cauHoiDtoList);
     }
+
     private void getControl() {
         pbLoad = findViewById(R.id.pbLoad);
         tvMonThi = findViewById(R.id.tvMonThi);
@@ -304,6 +311,7 @@ public class LuyenThiActivity extends AppCompatActivity{
 
         imbBackLT.setEnabled(true);
     }
+
     //xử lý vị trí của dialog
     private void hienThiKetQua(int gravity, List<CauHoiDto> cauHoiDtoList) {
         final Dialog dialog = new Dialog(this);
@@ -328,7 +336,7 @@ public class LuyenThiActivity extends AppCompatActivity{
         }
         tvKetQua = dialog.findViewById(R.id.tvKetQua);
         tvDiem = dialog.findViewById(R.id.tvDiem);
-        tvKetQua.setText("Đúng "+diem + "/" + tongCH+" câu hỏi");
+        tvKetQua.setText("Đúng " + diem + "/" + tongCH + " câu hỏi");
         tvDiem.setText(diem + " điểm");
         //Toast.makeText(this, "Điểm = "+ dem, Toast.LENGTH_SHORT).show();
 
@@ -346,81 +354,167 @@ public class LuyenThiActivity extends AppCompatActivity{
         btnKetQua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //xemLichSu(cauHoiDtoList);
+                imbBackLT.setVisibility(View.GONE);
+                viTri = 0;
+                loadLichSuThi(cauHoiDtoList,viTri);
+                btnNextCH.setText("Next");
+                if(btnNextCH.getText().toString().equals("Next")){
+                    btnNextCH.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            viTri++;
+                            loadLichSuThi(cauHoiDtoList, viTri);
+                        }
+                    });
+                }
                 dialog.dismiss();
             }
         });
         dialog.show();//quan trọng
     }
-    public void xemLichSu(List<CauHoiDto> cauHoiDtoList) {
-        viTri = 0;
-        imbBackLT.setEnabled(false);
-        if(viTri == tongCH - 1){
-            btnNextCH.setText("Thoát");
-        }
-        if(btnNextCH.getText().equals("Thoát")){
-            startActivity(new Intent(LuyenThiActivity.this,MonHocActivity.class));
-        }
+    private void loadLichSuThi(List<CauHoiDto> cauHoiDtoList, int viTri) {
+        int idCH = viTri + 1;
+        tvIdCH.setText("Câu hỏi: " + idCH + "/" + tongCH);
+        tvCauHoi.setText(cauHoiDtoList.get(viTri).getNoiDung());
+        btnA.setText(cauHoiDtoList.get(viTri).getA());
+        btnB.setText(cauHoiDtoList.get(viTri).getB());
+        btnC.setText(cauHoiDtoList.get(viTri).getC());
+        btnD.setText(cauHoiDtoList.get(viTri).getD());
+
         btnA.setEnabled(false);
         btnB.setEnabled(false);
         btnC.setEnabled(false);
         btnD.setEnabled(false);
-        String lc = cauHoiDtoList.get(viTri).getDapAn();
-        String da = cauHoiDtoList.get(viTri).getLuaChon();
+        String da = cauHoiDtoList.get(viTri).getDapAn();
+        String lc = cauHoiDtoList.get(viTri).getLuaChon();
         //#EE0000 : red
-        //#00FF00 : green
-        if(lc.equals(da)){
-            if(da.equals("A")){
-                btnA.setTextColor(Color.parseColor("#00FF00"));
-            }
-            else if(da.equals("B")){
-                btnB.setTextColor(Color.parseColor("#00FF00"));
-            }
-            else if(da.equals("C")){
-                btnC.setTextColor(Color.parseColor("#00FF00"));
-            }
-            else if(da.equals("D")){
-                btnD.setTextColor(Color.parseColor("#00FF00"));
-            }
-        }
-        else{
-            if(da.equals("A")){
-                btnA.setTextColor(Color.parseColor("#00FF00"));
-                if(lc.equals("B"))
-                    btnB.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("C"))
-                    btnC.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("D"))
-                    btnD.setTextColor(Color.parseColor("#EE0000"));
-            }
-            else if(da.equals("B")){
-                btnB.setTextColor(Color.parseColor("#00FF00"));
-                if(lc.equals("A"))
-                    btnA.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("C"))
-                    btnC.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("D"))
-                    btnD.setTextColor(Color.parseColor("#EE0000"));
-            }
-            else if(da.equals("C")){
-                btnC.setTextColor(Color.parseColor("#00FF00"));
-                if(lc.equals("B"))
-                    btnB.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("A"))
-                    btnA.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("D"))
-                    btnD.setTextColor(Color.parseColor("#EE0000"));
-            }
-            else if(da.equals("D")){
-                btnD.setTextColor(Color.parseColor("#00FF00"));
-                if(lc.equals("B"))
-                    btnB.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("C"))
-                    btnC.setTextColor(Color.parseColor("#EE0000"));
-                else if(lc.equals("A"))
-                    btnA.setTextColor(Color.parseColor("#EE0000"));
-            }
-        }
-    }
+        //#00CC00 : green
+        //#000000 : black
+        if (lc.equals(da)) {
+            if (da.equals("A")) {
+                btnA.setTextColor(Color.parseColor("#00CC00"));
 
+                btnB.setTextColor(Color.parseColor("#000000"));
+                btnC.setTextColor(Color.parseColor("#000000"));
+                btnD.setTextColor(Color.parseColor("#000000"));
+            } else if (da.equals("B")) {
+                btnB.setTextColor(Color.parseColor("#00CC00"));
+
+                btnA.setTextColor(Color.parseColor("#000000"));
+                btnC.setTextColor(Color.parseColor("#000000"));
+                btnD.setTextColor(Color.parseColor("#000000"));
+            } else if (da.equals("C")) {
+                btnC.setTextColor(Color.parseColor("#00CC00"));
+
+                btnB.setTextColor(Color.parseColor("#000000"));
+                btnA.setTextColor(Color.parseColor("#000000"));
+                btnD.setTextColor(Color.parseColor("#000000"));
+            } else if (da.equals("D")) {
+                btnD.setTextColor(Color.parseColor("#00CC00"));
+
+                btnB.setTextColor(Color.parseColor("#000000"));
+                btnC.setTextColor(Color.parseColor("#000000"));
+                btnA.setTextColor(Color.parseColor("#000000"));
+            }
+        } else {
+            if (da.equals("A")) {
+                btnA.setTextColor(Color.parseColor("#00CC00"));
+                if (lc.equals("B")) {
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("C")) {
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("D")) {
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+            else if (da.equals("B")) {
+                btnB.setTextColor(Color.parseColor("#00CC00"));
+                if (lc.equals("A")) {
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("C")) {
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("D")) {
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+            else if (da.equals("C")) {
+                btnC.setTextColor(Color.parseColor("#00CC00"));
+                if (lc.equals("B")) {
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("A")) {
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnD.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("D")) {
+                    btnD.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+            else if (da.equals("D")) {
+                btnD.setTextColor(Color.parseColor("#00CC00"));
+                if (lc.equals("B")) {
+                    btnB.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("C")) {
+                    btnC.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnA.setTextColor(Color.parseColor("#000000"));
+                }
+                else if (lc.equals("A")) {
+                    btnA.setTextColor(Color.parseColor("#EE0000"));
+
+                    btnB.setTextColor(Color.parseColor("#000000"));
+                    btnC.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        }
+        if (viTri == tongCH - 1) {
+            btnNextCH.setText("Exit");
+        }
+        if (viTri == tongCH) {
+            btnNextCH.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
+                    //finish();
+                }
+            });
+            }
+
+
+    }
 }

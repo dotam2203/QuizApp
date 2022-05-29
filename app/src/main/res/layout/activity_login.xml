@@ -58,7 +58,7 @@
             android:hint="Username"
             android:inputType="text"
             android:padding="16dp"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/purple_300"
             android:textColorHint="@color/purple_200" />
 
         <EditText
@@ -75,7 +75,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/purple_300"
             android:textColorHint="@color/purple_200" />
 
         <androidx.appcompat.widget.AppCompatButton
