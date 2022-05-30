@@ -35,6 +35,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LuyenThiActivity extends AppCompatActivity {
+    public static final String USER_LOGIN = "user_login";
+    public static final String MON_THI = "mon_thi";
     private MonHocDto monHocDto = null;
     private TaiKhoanDto taiKhoanDto = null;
     private List<CauHoiDto> cauHoiDtoList = new ArrayList<>(0);
@@ -59,8 +61,8 @@ public class LuyenThiActivity extends AppCompatActivity {
         bundle1 = getIntent().getExtras();
         bundle2 = getIntent().getExtras();
         if (bundle1 != null && bundle2 != null) {
-            monHocDto = (MonHocDto) bundle1.getSerializable("mon_thi");
-            taiKhoanDto = (TaiKhoanDto) bundle2.getSerializable("user_login");
+            monHocDto = (MonHocDto) bundle1.getSerializable(MON_THI);
+            taiKhoanDto = (TaiKhoanDto) bundle2.getSerializable(USER_LOGIN);
             tvMonThi.setText(monHocDto.getTenMonHoc().toUpperCase());
         }
         pbLoad.setVisibility(View.VISIBLE);
@@ -83,7 +85,6 @@ public class LuyenThiActivity extends AppCompatActivity {
             }
         });
     }
-
     /*@Override
     protected void onRestart() {
         loadCauHoiMoi(cauHoiDtoList);
@@ -166,7 +167,8 @@ public class LuyenThiActivity extends AppCompatActivity {
                 btnD.setTextColor(Color.parseColor("#05152C"));
                 if (luaChon.isEmpty()) {
                     Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else {
                     dapAn = cauHoiDtoList.get(viTri).getDapAn();
                     if (luaChon.equals("A")) {
                         soSanhKQ(cauHoiDtoList, luaChon, dapAn);
@@ -179,14 +181,10 @@ public class LuyenThiActivity extends AppCompatActivity {
                     }
                     viTri++;
                     loadCauHoiMoi(cauHoiDtoList);
-                    if (luaChon.isEmpty()) {
-                        Toast.makeText(LuyenThiActivity.this, "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
-                    }
                 }
             }
         });
     }
-
     private void hienThiYN(int gravity) {
         //xử lý vị trí của dialog
         final Dialog dialog = new Dialog(this);
@@ -209,12 +207,8 @@ public class LuyenThiActivity extends AppCompatActivity {
         } else {
             dialog.setCancelable(false);
         }
-
-
         btnThiTiep = dialog.findViewById(R.id.btnThiTiep);
         btnHuy = dialog.findViewById(R.id.btnHuy);
-
-
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,9 +238,9 @@ public class LuyenThiActivity extends AppCompatActivity {
     }
 
     private void loadCauHoiMoi(List<CauHoiDto> cauHoiDtoList) {
-        if (viTri == tongCH - 1) {
+        luaChon = "";
+        if (viTri == tongCH - 1)
             btnNextCH.setText("Submit");
-        }
         if (viTri == tongCH) {
             date = new Date(millis);
             ChiTietThiDto chiTietThiDto = new ChiTietThiDto();
@@ -263,7 +257,6 @@ public class LuyenThiActivity extends AppCompatActivity {
             //------------------------
             return;
         }
-
         int idCH = viTri + 1;
         tvIdCH.setText("Câu hỏi: " + idCH + "/" + tongCH);
         tvCauHoi.setText(cauHoiDtoList.get(viTri).getNoiDung());
@@ -272,7 +265,6 @@ public class LuyenThiActivity extends AppCompatActivity {
         btnC.setText(cauHoiDtoList.get(viTri).getC());
         btnD.setText(cauHoiDtoList.get(viTri).getD());
     }
-
     private void themCTT(ChiTietThiDto chiTietThiDto) {
         ChiTietThiService.chiTietThiService.themChiTietThi(chiTietThiDto).enqueue(new Callback<ChiTietThiDto>() {
             @Override
@@ -282,20 +274,17 @@ public class LuyenThiActivity extends AppCompatActivity {
                     return;
                 }
             }
-
             @Override
             public void onFailure(Call<ChiTietThiDto> call, Throwable t) {
                 Toast.makeText(LuyenThiActivity.this, "History inserted fail!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     private void thiLai(List<CauHoiDto> cauHoiDtoList) {
         diem = 0;
         viTri = 0;
         loadCauHoiMoi(cauHoiDtoList);
     }
-
     private void getControl() {
         pbLoad = findViewById(R.id.pbLoad);
         tvMonThi = findViewById(R.id.tvMonThi);
@@ -307,10 +296,8 @@ public class LuyenThiActivity extends AppCompatActivity {
         btnC = findViewById(R.id.btnC);
         btnD = findViewById(R.id.btnD);
         btnNextCH = findViewById(R.id.btnNextCH);
-
         imbBackLT.setEnabled(true);
     }
-
     //xử lý vị trí của dialog
     private void hienThiKetQua(int gravity, List<CauHoiDto> cauHoiDtoList) {
         final Dialog dialog = new Dialog(this);
@@ -337,11 +324,8 @@ public class LuyenThiActivity extends AppCompatActivity {
         tvDiem = dialog.findViewById(R.id.tvDiem);
         tvKetQua.setText("Đúng " + diem + "/" + tongCH + " câu hỏi");
         tvDiem.setText(diem + " điểm");
-        //Toast.makeText(this, "Điểm = "+ dem, Toast.LENGTH_SHORT).show();
-
         btnThiLai = dialog.findViewById(R.id.btnThiLai);
         btnKetQua = dialog.findViewById(R.id.btnKetQua);
-
         btnThiLai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -349,7 +333,6 @@ public class LuyenThiActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         btnKetQua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -379,7 +362,6 @@ public class LuyenThiActivity extends AppCompatActivity {
         btnB.setText(cauHoiDtoList.get(viTri).getB());
         btnC.setText(cauHoiDtoList.get(viTri).getC());
         btnD.setText(cauHoiDtoList.get(viTri).getD());
-
         btnA.setEnabled(false);
         btnB.setEnabled(false);
         btnC.setEnabled(false);
@@ -387,115 +369,99 @@ public class LuyenThiActivity extends AppCompatActivity {
         String da = cauHoiDtoList.get(viTri).getDapAn();
         String lc = cauHoiDtoList.get(viTri).getLuaChon();
         //#EE0000 : red
-        //#00CC00 : green
+        //#0000CD : blue
         //#000000 : black
         if (lc.equals(da)) {
             if (da.equals("A")) {
-                btnA.setTextColor(Color.parseColor("#00CC00"));
-
+                btnA.setTextColor(Color.parseColor("#0000CD"));
                 btnB.setTextColor(Color.parseColor("#000000"));
                 btnC.setTextColor(Color.parseColor("#000000"));
                 btnD.setTextColor(Color.parseColor("#000000"));
             } else if (da.equals("B")) {
-                btnB.setTextColor(Color.parseColor("#00CC00"));
-
+                btnB.setTextColor(Color.parseColor("#0000CD"));
                 btnA.setTextColor(Color.parseColor("#000000"));
                 btnC.setTextColor(Color.parseColor("#000000"));
                 btnD.setTextColor(Color.parseColor("#000000"));
             } else if (da.equals("C")) {
-                btnC.setTextColor(Color.parseColor("#00CC00"));
-
+                btnC.setTextColor(Color.parseColor("#0000CD"));
                 btnB.setTextColor(Color.parseColor("#000000"));
                 btnA.setTextColor(Color.parseColor("#000000"));
                 btnD.setTextColor(Color.parseColor("#000000"));
             } else if (da.equals("D")) {
-                btnD.setTextColor(Color.parseColor("#00CC00"));
-
+                btnD.setTextColor(Color.parseColor("#0000CD"));
                 btnB.setTextColor(Color.parseColor("#000000"));
                 btnC.setTextColor(Color.parseColor("#000000"));
                 btnA.setTextColor(Color.parseColor("#000000"));
             }
         } else {
             if (da.equals("A")) {
-                btnA.setTextColor(Color.parseColor("#00CC00"));
+                btnA.setTextColor(Color.parseColor("#0000CD"));
                 if (lc.equals("B")) {
                     btnB.setTextColor(Color.parseColor("#EE0000"));
-
                     btnC.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("C")) {
                     btnC.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("D")) {
                     btnD.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnC.setTextColor(Color.parseColor("#000000"));
                 }
             }
             else if (da.equals("B")) {
-                btnB.setTextColor(Color.parseColor("#00CC00"));
+                btnB.setTextColor(Color.parseColor("#0000CD"));
                 if (lc.equals("A")) {
                     btnA.setTextColor(Color.parseColor("#EE0000"));
-
                     btnC.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("C")) {
                     btnC.setTextColor(Color.parseColor("#EE0000"));
-
                     btnA.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("D")) {
                     btnD.setTextColor(Color.parseColor("#EE0000"));
-
                     btnA.setTextColor(Color.parseColor("#000000"));
                     btnC.setTextColor(Color.parseColor("#000000"));
                 }
             }
             else if (da.equals("C")) {
-                btnC.setTextColor(Color.parseColor("#00CC00"));
+                btnC.setTextColor(Color.parseColor("#0000CD"));
                 if (lc.equals("B")) {
                     btnB.setTextColor(Color.parseColor("#EE0000"));
-
                     btnA.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("A")) {
                     btnA.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnD.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("D")) {
                     btnD.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnA.setTextColor(Color.parseColor("#000000"));
                 }
             }
             else if (da.equals("D")) {
-                btnD.setTextColor(Color.parseColor("#00CC00"));
+                btnD.setTextColor(Color.parseColor("#0000CD"));
                 if (lc.equals("B")) {
                     btnB.setTextColor(Color.parseColor("#EE0000"));
-
                     btnC.setTextColor(Color.parseColor("#000000"));
                     btnA.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("C")) {
                     btnC.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnA.setTextColor(Color.parseColor("#000000"));
                 }
                 else if (lc.equals("A")) {
                     btnA.setTextColor(Color.parseColor("#EE0000"));
-
                     btnB.setTextColor(Color.parseColor("#000000"));
                     btnC.setTextColor(Color.parseColor("#000000"));
                 }
@@ -508,12 +474,9 @@ public class LuyenThiActivity extends AppCompatActivity {
             btnNextCH.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
-                    //finish();
+                    finish();
                 }
             });
-            }
-
-
+        }
     }
 }

@@ -15,6 +15,7 @@ import com.api.R;
 import com.api.dto.TaiKhoanDto;
 
 public class AccountFragmentActivity extends Fragment {
+    public static final String USER_LOGIN = "user_login";
     TaiKhoanDto taiKhoanDto;
     TextView tvUsername, tvPassword, tvEmail, tvName;
 
@@ -36,7 +37,7 @@ public class AccountFragmentActivity extends Fragment {
     private void setEvent() {
         Bundle receive = getActivity().getIntent().getExtras();
         if(receive != null){
-            taiKhoanDto = (TaiKhoanDto) receive.getSerializable("user_login");
+            taiKhoanDto = (TaiKhoanDto) receive.getSerializable(USER_LOGIN);
             tvUsername.setText(taiKhoanDto.getMaTaiKhoan());
             tvPassword.setText(taiKhoanDto.getMatKhau());
             tvEmail.setText(taiKhoanDto.getEmail());

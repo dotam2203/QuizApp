@@ -34,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAdapter.ItemClickCTT{
+    public static final String USER_LOGIN = "user_login";
     public final List<ChiTietThiDto> chiTietThiDtoList = new ArrayList<>();
     public ChiTietThiAdapter chiTietThiAdapter;
     TaiKhoanDto taiKhoanDto;
@@ -51,7 +52,7 @@ public class LichSuThiActivity extends AppCompatActivity implements ChiTietThiAd
         setContentView(R.layout.activity_history);
         //nhận dữ liệu đăng nhập từ LoginActivity qua
         Bundle bundle = getIntent().getExtras();
-        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable("user_login");
+        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable(USER_LOGIN);
 
         setControl();
 

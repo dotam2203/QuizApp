@@ -26,6 +26,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
+    public static final String USER_LOGIN = "user_login";
     public static final String KEY_USER_TO_MAIN = "KEY_USER_TO_MAIN";
     public static final String KEY_PASSWORD_TO_MAIN = "KEY_PASSWORD_TO_MAIN";
 
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             //truyền dữ liệu user qua HomeActivity
             Bundle bundle = new Bundle();
-            bundle.putSerializable("user_login",taiKhoanDto);
+            bundle.putSerializable(USER_LOGIN,taiKhoanDto);
             intent.putExtras(bundle);
 
             this.startActivity(intent);

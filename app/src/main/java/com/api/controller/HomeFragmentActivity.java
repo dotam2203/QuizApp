@@ -23,6 +23,7 @@ import com.api.dto.ChiTietThiDto;
 import com.api.dto.TaiKhoanDto;
 
 public class HomeFragmentActivity extends Fragment {
+    private static final String USER_LOGIN = "user_login";
     TaiKhoanDto taiKhoanDto;
     LinearLayout llLT, llLS;
     Button btnY, btnN;
@@ -42,7 +43,7 @@ public class HomeFragmentActivity extends Fragment {
 
         //nhận dữ liệu đăng nhập từ LoginActivity qua
         Bundle bundle = getActivity().getIntent().getExtras();
-        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable("user_login");
+        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable(USER_LOGIN);
 
         setEvent();
         return view;
@@ -57,7 +58,7 @@ public class HomeFragmentActivity extends Fragment {
                 //truyền dữ liệu tk qua MonHocActivity
                 Intent intent = new Intent(getContext(),MonHocActivity.class);
                 Bundle send = new Bundle();
-                send.putSerializable("user_login",taiKhoanDto);
+                send.putSerializable(USER_LOGIN,taiKhoanDto);
                 intent.putExtras(send);
                 startActivity(intent);
 
@@ -71,7 +72,7 @@ public class HomeFragmentActivity extends Fragment {
                 //truyền dữ liệu tk qua ChiTietThiActivity
                 Intent intent = new Intent(getContext(), LichSuThiActivity.class);
                 Bundle send = new Bundle();
-                send.putSerializable("user_login",taiKhoanDto);
+                send.putSerializable(USER_LOGIN,taiKhoanDto);
                 intent.putExtras(send);
                 startActivity(intent);
             }

@@ -38,9 +38,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.ItemClickMH {
+    public static final String USER_LOGIN = "user_login";
+    public static final String MON_THI = "mon_thi";
     public final List<MonHocDto> monHocDtoList = new ArrayList<>();
     public MonHocAdapter monHocAdapter;
-    public MonHocDto monHocDto = null;
     TaiKhoanDto taiKhoanDto;
     List<MonHocDto> filter;
 
@@ -60,7 +61,7 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         setContentView(R.layout.activity_subject);
         //nhận dữ liệu đăng nhập từ HomeFragmentActivity qua
         Bundle bundle = getIntent().getExtras();
-        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable("user_login");
+        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable(USER_LOGIN);
 
         setControl();
 
@@ -85,7 +86,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         rvDSMH = findViewById(R.id.rvDSMonHoc);
         pbLoad = findViewById(R.id.pbLoad);
         searchMH = findViewById(R.id.searchMH);
-
     }
 
     private void setEvent() {
@@ -163,32 +163,6 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
             //message();
         }
     }
-    private void message() {
-        //sử dụng dialog hiển thị thông báo
-        AlertDialog.Builder mess = new AlertDialog.Builder(MonHocActivity.this);
-        //xác định tiêu đề
-        mess.setTitle("Thông báo!");
-        mess.setMessage("Bạn thật sự muốn thi môn" + monHocDto.getTenMonHoc());
-        //đồng ý
-        mess.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
-        //không đồng ý
-        mess.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        //tạo dialog
-        AlertDialog alertDialog = mess.create();
-        //hiển thị
-        alertDialog.show();
-    }
-
     //xử lý vị trí của dialog
     private void callDialog(int gravity, MonHocDto monhoc) {
         final Dialog dialog = new Dialog(this);
@@ -221,30 +195,27 @@ public class MonHocActivity extends AppCompatActivity implements MonHocAdapter.I
         btnDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                     //dialog.dismiss();
                     Intent intent = new Intent(MonHocActivity.this, LuyenThiActivity.class);
                     //truyền môn thi qua LuyenThiActivity
                     Bundle bundle1 = new Bundle();
-                    bundle1.putSerializable("mon_thi", monhoc);
+                    bundle1.putSerializable(MON_THI, monhoc);
                     intent.putExtras(bundle1);
                     //truyền tài khoản qua LuyenThiActivity
                     Bundle bundle2 = new Bundle();
-                    bundle2.putSerializable("user_login", taiKhoanDto);
+                    bundle2.putSerializable(USER_LOGIN, taiKhoanDto);
                     intent.putExtras(bundle2);
 
                     startActivity(intent);
                     dialog.dismiss();
             }
         });
-
         btnThoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();//đóng dialog
             }
         });
-
         dialog.show();//quan trọng
     }
 }

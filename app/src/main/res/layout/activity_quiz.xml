@@ -60,18 +60,19 @@
         android:id="@+id/btnB"
         style="@style/button_click_quiz"
         android:layout_below="@id/btnA"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnC"
         style="@style/button_click_quiz"
         android:layout_below="@id/btnB"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnD"
+        style="@style/button_click_quiz"
         android:layout_below="@id/btnC"
-        android:layout_marginTop="20dp"
-        style="@style/button_click_quiz"/>
+        android:layout_marginTop="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +82,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="570dp"
         android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -92,7 +93,7 @@
             android:background="@drawable/round_border_onclick"
             android:text="Next"
             android:textColor="#D5DDE3"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 
