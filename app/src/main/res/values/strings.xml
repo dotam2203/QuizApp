@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Luyện Thi PTIT</string>
+    <string name="app_name">PTIT QUIZ</string>
     <string name="error_user_login">Vui lòng nhập Username</string>
     <string name="error_pass_login">Vui lòng nhập Password</string>
     <string name="maMT">Mã môn thi</string>
