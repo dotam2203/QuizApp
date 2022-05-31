@@ -67,7 +67,7 @@
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:background="@drawable/round_border_green20"
-                android:text="Xem Lịch Sử"
+                android:text="Xem Đáp Án"
                 android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
