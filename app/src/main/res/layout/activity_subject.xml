@@ -36,7 +36,6 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchMH"
-        app:queryHint="Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tbTitle"
@@ -44,7 +43,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/round_border90" />
+        android:background="@drawable/round_border90"
+        app:queryHint="Search..." />
     <ProgressBar
         android:id="@+id/pbLoad"
         style="?android:attr/progressBarStyle"
