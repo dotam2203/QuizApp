@@ -239,6 +239,7 @@ public class LuyenThiActivity extends AppCompatActivity {
 
     private void loadCauHoiMoi(List<CauHoiDto> cauHoiDtoList) {
         luaChon = "";
+        btnNextCH.setText("Next");
         if (viTri == tongCH - 1)
             btnNextCH.setText("Submit");
         if (viTri == tongCH) {

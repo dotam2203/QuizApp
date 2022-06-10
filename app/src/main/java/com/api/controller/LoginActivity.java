@@ -65,9 +65,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String pass = SingleDemo.getInstance().getPass("pass","");
         if(user.isEmpty() || pass.isEmpty()){
             pbLoad.setVisibility(View.GONE);
+            txtUserLogin.setEnabled(true);
+            txtPassLogin.setEnabled(true);
             return false;
         }
         else {
+            txtUserLogin.setEnabled(false);
+            txtPassLogin.setEnabled(false);
             txtUserLogin.setText(user);
             txtPassLogin.setText(pass);
             pbLoad.setVisibility(View.VISIBLE);
