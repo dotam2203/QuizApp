@@ -59,8 +59,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private boolean getCheckAccount() {
-        /*String user =  sharedPreferences.getString("user","");
-        String pass = sharedPreferences.getString("pass","");*/
         String user = SingleDemo.getInstance().getUser("user","");
         String pass = SingleDemo.getInstance().getPass("pass","");
         if(user.isEmpty() || pass.isEmpty()){
@@ -154,8 +152,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(isAccount){
             // goto HomeActivity
             Intent intent = new Intent(this, HomeActivity.class);
-            //Toast.makeText(LoginActivity.this,"Login Success!",Toast.LENGTH_SHORT).show();
-
             //truyền dữ liệu user qua HomeActivity
             Bundle bundle = new Bundle();
             bundle.putSerializable(USER_LOGIN,taiKhoanDto);
@@ -171,14 +167,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
     private void setDataLocal(TaiKhoanDto taiKhoanDto) {
-        /*SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user", taiKhoanDto.getMaTaiKhoan());
-        editor.putString("pass", taiKhoanDto.getMatKhau());
-        editor.apply();*/
         SingleDemo.setUser("user",taiKhoanDto.getMaTaiKhoan());
         SingleDemo.setPass("pass",taiKhoanDto.getMatKhau());
-
-
     }
-
 }

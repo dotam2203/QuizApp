@@ -212,7 +212,6 @@ public class LuyenThiActivity extends AppCompatActivity {
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(LuyenThiActivity.this, MonHocActivity.class));
                 finish();
                 dialog.dismiss();
             }
