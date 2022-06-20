@@ -29,12 +29,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String USER_LOGIN = "user_login";
-    public static final String KEY_USER_TO_MAIN = "KEY_USER_TO_MAIN";
-    public static final String KEY_PASSWORD_TO_MAIN = "KEY_PASSWORD_TO_MAIN";
-
-    public static final String KEY_USER_FROM_REGISTER = "KEY_USER_FROM_REGISTER";
-
-    public static final int REQUEST_CODE_REGISTER = 1;
     private EditText txtUserLogin;
     private EditText txtPassLogin;
     private Button btnLogin;
@@ -48,12 +42,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //sharedPreferences = this.getSharedPreferences("account",Context.MODE_PRIVATE);
         SingleDemo.getInstance().setSharedPreferences(this);
         context = this;
         setControl();
         pbLoad.setVisibility(View.VISIBLE);
-
         getListAccount();
         btnLogin.setOnClickListener(this);
     }
@@ -100,16 +92,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         TaiKhoanService.taiKhoanService.layDSTaiKhoan().enqueue(new Callback<List<TaiKhoanDto>>() {
             @Override
             public void onResponse(Call<List<TaiKhoanDto>> call, Response<List<TaiKhoanDto>> response) {
-                //Toast.makeText(LoginActivity.this, "Call API Successful", Toast.LENGTH_SHORT).show();
                 listTK = response.body();
-                Log.e("List Account", listTK.size() + "");
                 if(getCheckAccount()){
                     clickLogin();
+                }
+                else if(!getCheckAccount()){
+                    pbLoad.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, "Tài khoản chưa được lưu.\nVui lòng đăng nhập!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
             @Override
             public void onFailure(Call<List<TaiKhoanDto>> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Call API Failed", Toast.LENGTH_SHORT).show();
+                pbLoad.setVisibility(View.GONE);
             }
         });
     }
@@ -152,6 +147,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(isAccount){
             // goto HomeActivity
             Intent intent = new Intent(this, HomeActivity.class);
+            Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
             //truyền dữ liệu user qua HomeActivity
             Bundle bundle = new Bundle();
             bundle.putSerializable(USER_LOGIN,taiKhoanDto);
@@ -159,7 +155,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             SingleAccount.INSTANCE.setTaiKhoanDto(taiKhoanDto);
 
             this.startActivity(intent);
-
         }
         else{
             pbLoad.setVisibility(View.GONE);

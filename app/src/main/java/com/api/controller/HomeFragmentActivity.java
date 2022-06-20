@@ -41,10 +41,7 @@ public class HomeFragmentActivity extends Fragment {
         btnY = view.findViewById(R.id.btnYes);
         btnN = view.findViewById(R.id.btnNo);
         tvName = view.findViewById(R.id.tvName);
-//        sharedPreferences = getContext().getSharedPreferences("account", Context.MODE_PRIVATE);
-        //nhận dữ liệu đăng nhập từ LoginActivity qua
         Bundle bundle = getActivity().getIntent().getExtras();
-//        taiKhoanDto = (TaiKhoanDto) bundle.getSerializable(USER_LOGIN);
         taiKhoanDto = SingleAccount.INSTANCE.getTaiKhoanDto();
 
         setEvent();
